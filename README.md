@@ -7,9 +7,11 @@
 
 #### Math
 - Binary Search
-- Dynamic Programming
 - Greedy
 - Divide and Conquer
+- Recursion
+  - Dynamic Programming 
+  - Backtracking
 
 #### Graph
 - BFS
