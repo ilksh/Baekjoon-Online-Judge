@@ -2,7 +2,7 @@ n = int(input())
 data = list(map(int, input().split()))
 stack = []
 # initialize ans with -1
-# for the case that has no bigger num on the right
+# for the case that has no bigger number on the right
 ans = [-1 for _ in range(n)]
 
 # step 1) explore the entire data: safe
