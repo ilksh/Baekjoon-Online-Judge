@@ -9,6 +9,7 @@
 - Binary Search
 - Greedy
 - Divide and Conquer
+- Union-Find
 - Recursion
   - Dynamic Programming 
   - Backtracking
