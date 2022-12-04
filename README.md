@@ -36,3 +36,4 @@
 - LCA (Lowest Common Ancestor)
 - Minimum Spanning Tree
 - BST (Binary search Tree)
+- Segment Tree
