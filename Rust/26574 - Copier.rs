@@ -2,12 +2,12 @@ use std::io;
 
 fn main() {
     // Input number of test cases
-    let mut t = String::new();
+    let mut tc = String::new();
     io::stdin().read_line(&mut t).unwrap();
     let t: usize = t.trim().parse().unwrap();
 
     // Iterate over test cases
-    for _ in 0..t {
+    for _ in 0..tc {
         // Input an integer
         let mut n = String::new();
         io::stdin().read_line(&mut n).unwrap();
