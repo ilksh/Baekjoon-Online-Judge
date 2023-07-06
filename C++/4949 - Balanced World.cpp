@@ -38,7 +38,7 @@ int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(nullptr);
 
-    string line = "";
+    string line = NULL;
 
     while (line != ".") {
         getline(cin, line);
