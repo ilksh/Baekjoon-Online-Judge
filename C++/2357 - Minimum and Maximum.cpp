@@ -61,7 +61,7 @@ int main() {
       cin >> mxTree[treeSize + i];
       mnTree[treeSize + i] = mxTree[treeSize + i];
     }
-
+    
     for(int i = treeSize - 1; i > 0; --i) {
         // [0..7] = [0..3] + [4..7]
         mxTree[i] = max(mxTree[i << 1], mxTree[i << 1 | 1]);
