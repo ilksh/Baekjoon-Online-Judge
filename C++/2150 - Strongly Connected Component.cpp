@@ -11,7 +11,7 @@ typedef vector<vector<int>> vvi;
 int id, dt[MAX_V]; // dt stores discovery times
 bool finished[MAX_V]; // Tracks if a node's DFS is complete
 
-vi adj[MAX_E], adj_rev[MAX_E]; // Adjacency list for storing graph edges and reversed edges
+vi adj[MAX_E], adj_rev[MAX_E];
 vvi SCCs; // Stores lists of SCCs
 stack<int> s; // Stack used in DFS
 
