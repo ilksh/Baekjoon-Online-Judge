@@ -5,7 +5,7 @@ using namespace std;
 typedef vector<int> vi;
 typedef vector<bool> vb;
 
-const int MAX_N = 1e3;
+const int MAX_N = 1e3 + 3;
 
 vb visited;
 vi adj[MAX_N];
@@ -18,25 +18,17 @@ bool dfs(int a) {
     visited[a] = true;
 
     for (auto b: adj[a]) {
-        if (bMatch[b] == -1) {
+        if (bMatch[b] == -1 || dfs(bMatch[b])) {
             aMatch[a] = b;
             bMatch[b] = a;
-            return true;
-        }
-        else {
-            int matchedPerson = bMatch[b];
-            if (dfs(matchedPerson)){
-                aMatch[a] = b;
-                bMatch[b] = a;
-                return true;
-            }
+            return true;  
         }
     }
     return false;
 }   
 int bipartiteMatch() {
     aMatch = vi(n + 1, -1);
-    bMatch = vi(n + 1, -1);
+    bMatch = vi(m + 1, -1);
     int size = 0;
 
     for (int start = 1; start < n + 1; ++start) {
@@ -51,6 +43,7 @@ int main() {
     cin.tie(nullptr); cout.tie(nullptr);
 
     cin >> n >> m;   
+
     for (int i = 1; i < n + 1; ++i) {
         int numJobs; 
         cin >> numJobs;
