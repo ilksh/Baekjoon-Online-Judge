@@ -13,7 +13,7 @@ vector<int> finish_stack;
 
 int visited[MAX_NODES], scc_id[MAX_NODES];
 
-constexpr int inverse(int x) {return x >= 3 * n ? x - 3 * n : x + 3 * n;}
+inline int inverse(int x) {return x >= 3 * n ? x - 3 * n : x + 3 * n;}
 
 int ccw(int x1, int y1, int x2, int y2, int x3, int y3) {
     int res = (x2 - x1) * (y3 - y1) - (y2 - y1) * (x3 - x1);
