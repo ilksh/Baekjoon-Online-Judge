@@ -71,7 +71,7 @@ int main() {
     }
 
     // Check for satisfiability
-    for (int i = 1; i <= n; ++i) {
+    for (int i = 1; i < n + 1; ++i) {
         if (sccId[trueX(i)] == sccId[falseX(i)]) {
             cout << "0\n"; // UNSATISFIABLE
             return 0;
