@@ -1,17 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-constexpr int MAX = 2000; // 최대 행/열 크기
+typedef vector<int> vi;
+typedef vector<vi> vvi;
+
+constexpr int MAX = 2000; 
 constexpr int trueX(int x) { return x << 1; }
 constexpr int falseX(int x) { return (x << 1) | 1; }
 constexpr int notX(int x) { return x ^ 1; }
 
-int n, m; // 행과 열 크기
-vector<int> adj[MAX * 2]; // 암시적 그래프
+
+int n, m;
+vi adj[MAX * 2];
 int id, dt[MAX * 2], sccId[MAX * 2];
 bool finished[MAX * 2];
 stack<int> s;
-vector<vector<int>> SCCs;
+vvi SCCs;
 
 int dfs(int x) {
     dt[x] = ++id;
@@ -24,7 +28,7 @@ int dfs(int x) {
     }
 
     if (parent == dt[x]) {
-        vector<int> scc;
+        vi scc;
         while (true) {
             int t = s.top(); s.pop();
             scc.push_back(t);
@@ -72,7 +76,7 @@ int main() {
                 addOR(falseX(i), falseX(n + j)); // !x_r || !y_c
             }
             else if (museum[i][j] == '#') {
-                // location : (x_r || !y_c) && (!x_r || y_c)
+                // location: (x_r || !y_c) && (!x_r || y_c)
                 addOR(trueX(i), falseX(n + j)); // x_r || !y_c
                 addOR(falseX(i), trueX(n + j)); // !x_r || y_c
             }
