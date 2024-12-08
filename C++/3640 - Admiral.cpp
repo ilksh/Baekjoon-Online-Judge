@@ -33,14 +33,13 @@ int mcmf(int source, int sink) {
         q.push(source);
         inQueue[source] = true;
 
-        while (!q.empty()) {
-            auto cur = q.front();
-            q.pop();
+        while(!q.empty()) { // trying to find augmenting path
+            int cur = q.front(); q.pop();
             inQueue[cur] = false;
-
-            for (int next : adj[cur]) {
+            
+            for (int next : adj[cur]) { // iterate all adjacent nodes
                 int r = capacity[cur][next] - flow[cur][next];
-                int nextCost = dist[cur] + cost[cur][next];
+                int nextCost = dist[cur] = cost[cur][next];
 
                 if (r <= 0 || nextCost >= dist[next]) continue;
 
@@ -53,10 +52,11 @@ int mcmf(int source, int sink) {
                 }
             }
         }
-
+        // no augmenting path found
         if (parent[sink] == -1) break;
 
         int curFlow = INF;
+        
         for (int p = sink; p != source; p = parent[p]) {
             int par = parent[p];
             int r = capacity[par][p] - flow[par][p];
@@ -70,7 +70,6 @@ int mcmf(int source, int sink) {
             totalCost += curFlow * cost[par][p];
         }
     }
-
     return totalCost;
 }
 
@@ -86,25 +85,25 @@ int main() {
         cost.assign(MAX, vi(MAX, INF));
         for (int i = 0; i < MAX; ++i) adj[i].clear();
 
-        int source = 2 * n + 2;
-        int sink = 2 * n + 3;
+        int source = 0; // Super Source
+        int sink = 2 * n + 1; // Super Sink
 
-        // Source to the first node group
-        addEdge(source, 1 * 2, 2, 0);
+        // connect super source to starting point (node 1)
+        addEdge(source, 1, 2, 0);
 
-        // Sink connection to the last node group
-        addEdge(n * 2, sink, 2, 0);
-
-        // Split each node into in-node and out-node
-        for (int i = 1; i <= n; ++i) {
-            addEdge(i * 2, i * 2 + 1, (i == 1 || i == n) ? 2 : 1, 0);
+        // connect nodes and split them into in_node and out_node
+        for (int i = 1; i < n + 1; ++i) {
+            // in_node: i, out_node: (i + n)
+            addEdge(i, i + n, (i == 1 || i == n) ? 2: 1, 0);
+            if (i == n) addEdge(i + n, sink, 2, 0);
         }
 
-        // Add connections between nodes
+        // add edges based on input graph
         for (int i = 0; i < m; ++i) {
             int u, v, w;
             cin >> u >> v >> w;
-            addEdge(u * 2 + 1, v * 2, 1, w);
+            // connect outNodeU -> inNodeV with weight "w"
+            addEdge(u + n, v, 1, w);
         }
 
         auto result = mcmf(source, sink);
@@ -112,4 +111,5 @@ int main() {
     }
 
     return 0;
+
 }
